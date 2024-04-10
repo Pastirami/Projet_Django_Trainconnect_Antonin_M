@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <a href="/"><H1>Train connect</H1></a>
+        <nav>
+            <a href="/">Acceuil</a>
+            <a href="/random">Aléatoire</a>
+        </nav>
+    </header>
+    <main>
+        <div class="imgcontain">
+            <img src="{% static train.image %}" alt="image train">
+        </div>
+        <div class="trajet"><H3>Paris ➔ {{ train.destination }}</H3></div>
+        <div class="affichage">
+            <p>{{ train.heure_depart }}</p>
+            <div class="fleche">
+                <span class="rectangle"></span>
+                <span class="triangle"></span>            
+            </div>
+            <p>{{ train.heure_arrivee }}</p>
+        </div>
+        <div class="statuscontain">
+            {% if train.status == 1 %}
+                <p class="palheure">À l'heure</p>
+            {% elif train.status == 2 %}
+                <p class="penretard">En retard</p>
+            {% elif train.status == 3 %}
+                <p class="pannule">Annulé</p>
+            {% endif %}
+        </div>
+        <div class="spancontain">
+            <span class="ligne"></span>
+        </div>
+        <div class="tram">
+            <img src="{%static 'img/tram_ilustration.png'%}" alt="tram_ilustration">
+        </div>
+    </main>
+    <footer>
+        <p class="footertext"> Créer en 2024 par Antonin Meynadier</p>
+    </footer>
+</body>
+</html>

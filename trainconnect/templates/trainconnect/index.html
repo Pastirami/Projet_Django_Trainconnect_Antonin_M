@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <a href="/"><H1>Train connect</H1></a>
+        <nav>
+            <a href="/">Acceuil</a>
+            <a href="random/">Aléatoire</a>
+        </nav>
+    </header>
+    <main>
+        <article>
+            {% for train in trains %}
+                    <a href="details/{{ train.train_id }}">
+                        {# on attribu la classe train puis on fait une multiple condition pour déterminer le status du train si il est late canceled ou on time puis on répete l'opétaiton pour chaques trains que j'ai dans ma db #}
+                        <div class="train {% if train.status == 1 %} time {% elif train.status == 2 %} late {% elif train.status == 3 %} canceled {% endif %}">
+                            <h2> Paris ➔ {{ train.destination }}</h2>
+                            <p>{{ train.heure_depart }} ➔ {{ train.heure_arrivee }}</p>
+                        </div>
+                    </a>
+            {% endfor %}
+        </article>
+    </main>
+    <footer>
+        <p class="footertext"> Créer en 2024 par Antonin Meynadier</p>
+    </footer>
+</body>
+</html>
